@@ -430,6 +430,8 @@ header.ecl-site-header {
 
   a {
     display: block;
+    width: fit-content;
+    margin: auto;
     text-decoration: none
   }
 }
@@ -940,7 +942,7 @@ section {
   .section-title {
     position: relative;
     z-index: 25;
-    width: min-content;
+    width: fit-content;
     margin: $spacer*-3 auto $spacer*-1;
   }
 
@@ -981,7 +983,7 @@ section {
   .section-title {
     position: relative;
     z-index: 25;
-    width: min-content;
+    width: fit-content;
     margin: 0 auto $spacer*-1;
     white-space: nowrap;
   }

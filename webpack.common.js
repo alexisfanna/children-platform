@@ -9,10 +9,10 @@ const languages = [
   'bg', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fi', 'fr', 'ga', 'hr', 'hu', 'it', 'lt', 'lv', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'sl', 'sv',
 ];
 
-const templates = languages.flatMap(lang => [
-  `index_${lang}.html`,
-  `accessibility-statement_${lang}.html`,
-]);
+const templates = [
+  'index',
+  'accessibility-statement',
+];
 
 module.exports = {
   output: {
@@ -102,29 +102,26 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
+      cleanStaleWebpackAssets: true,
     }), // delete all files in 'dist' folder without deleting the folder itself
     new MiniCssExtractPlugin({
-      filename: './css/[name].css',
+      filename: 'css/[name].css',
       chunckFileName: '[id].css',
     }),
-    ...templates.flatMap((fichier) => {
-      return [
-        new HtmlWebpackPlugin({
-          template: path.resolve(__dirname, './src/' + fichier),
-          inject: false,
-          hash: true,
-          minify: true,
-          filename: fichier,
-        }),
-        // new HtmlWebpackPlugin({
-        //   template: path.resolve(__dirname, './src/' + fichier),
-        //   inject: false,
-        //   hash: true,
-        //   minify: true,
-        //   filename: fichier.replace('.html', ''),
-        // }),
-      ];
+    ...languages.flatMap((lang) => {
+      let folderName = path.basename(lang, path.extname(lang)); // Extract folder name from lang
+      return templates.flatMap((file) => {
+        let fileName = file + '_' + lang + '.html';
+        return [
+          new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/' + fileName),
+            inject: false,
+            hash: true,
+            minify: true,
+            filename: `${folderName}/${file}.html`, // Generate folder for each fichier and file
+          }),
+        ];
+      });
     }),
   ],
 };

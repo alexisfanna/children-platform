@@ -3,7 +3,7 @@
 
 import 'bootstrap/js/dist/scrollspy';
 
-import jQuery from 'jQuery';
+import jquery from 'jquery';
 
 // import 'bootstrap/js/dist/util';
 // import 'popper.js/dist/popper';
@@ -121,4 +121,4 @@ import jQuery from 'jQuery';
         });
 
     });
-}(jQuery));
+}(jquery));

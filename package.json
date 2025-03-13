@@ -43,7 +43,6 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^4.4.1",
     "devserver": "^0.2.5",
-    "jQuery": "^1.7.4",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
     "postcss-flexbox": "^1.0.3",
